@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>パートナー専用ページ｜合同会社TRUST</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #141414; --light: #FAFAF7; --paper: #F0EDE6; --muted: #5F5D57; --line: #D8D5CD; --gold: #8A6A3B; --gray: #E4E1DA; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--light); color: var(--ink); }
+  body { font-family: 'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif; font-size: 15px; line-height: 1.6; -webkit-text-size-adjust: 100%; }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 64px; }
+
+  header { background: var(--ink); color: var(--light); padding: 18px 20px 22px; }
+  header .in { max-width: 720px; margin: 0 auto; }
+  .logo { font-family: 'Noto Serif JP', serif; font-weight: 700; letter-spacing: .18em; font-size: 13px; color: #C9A86A; }
+  header h1 { font-family: 'Noto Serif JP', serif; font-size: 22px; margin: 6px 0 2px; letter-spacing: .04em; }
+  header p { margin: 0; font-size: 12px; color: #C9C6BE; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 24px; }
+  .stat { background: #fff; padding: 16px; }
+  .stat .k { font-size: 12px; color: var(--muted); }
+  .stat .v { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .stat .v small { font-family: 'Noto Sans JP', sans-serif; font-size: 13px; font-weight: 500; margin-left: 2px; }
+  @media (min-width: 700px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+
+  .cta { display: block; text-align: center; text-decoration: none; background: var(--ink); color: var(--light); font-weight: 700; letter-spacing: .1em; padding: 16px; margin-top: 16px; }
+  .cta-note { font-size: 12px; color: var(--muted); text-align: center; margin: 8px 0 0; }
+
+  h2 { font-size: 15px; letter-spacing: .08em; margin: 36px 0 12px; display: flex; justify-content: space-between; align-items: baseline; }
+  h2 .eyebrow { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 12px; letter-spacing: .2em; margin-right: 8px; }
+  h2 small { font-weight: 400; color: var(--muted); font-size: 12px; letter-spacing: 0; }
+
+  .tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+  .tab { flex: none; font: inherit; font-size: 13px; background: #fff; color: var(--ink); border: 1px solid var(--line); padding: 7px 14px; cursor: pointer; }
+  .tab.on { background: var(--ink); color: var(--light); border-color: var(--ink); }
+  .search { width: 100%; font: inherit; font-size: 16px; border: 1px solid var(--line); background: #fff; padding: 10px 12px; margin-top: 10px; border-radius: 0; -webkit-appearance: none; }
+  .search:focus { outline: none; border-color: var(--ink); }
+
+  .card { background: #fff; border: 1px solid var(--line); margin-top: 10px; }
+  .card .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; padding: 14px 16px 10px; }
+  .card .name { font-weight: 700; font-size: 16px; }
+  .card .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card .deals { border-top: 1px solid var(--line); }
+  .deal { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 16px; border-top: 1px solid var(--gray); }
+  .deal:first-child { border-top: 0; }
+  .deal .svc { font-weight: 500; }
+  .deal .dates { font-size: 12px; color: var(--muted); }
+  .deal .right { text-align: right; flex: none; }
+  .deal .fee { font-size: 12px; color: var(--muted); margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .empty-deal { padding: 10px 16px; font-size: 13px; color: var(--muted); }
+
+  .pill { display: inline-block; font-size: 12px; font-weight: 500; padding: 2px 10px; white-space: nowrap; border: 1px solid var(--ink); }
+  .pill.done { background: var(--ink); color: var(--light); }
+  .pill.applied { background: var(--paper); border-color: var(--paper); }
+  .pill.wait { background: #fff; }
+  .pill.off { background: #fff; color: var(--muted); border-color: var(--line); }
+
+  .fees { background: #fff; border: 1px solid var(--line); }
+  .fees .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .fees select { font: inherit; font-size: 15px; border: 1px solid var(--line); background: #fff; padding: 6px 10px; border-radius: 0; }
+  .fees .total { font-family: 'Noto Serif JP', serif; font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .fees table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .fees td { padding: 10px 16px; border-top: 1px solid var(--gray); }
+  .fees td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .fees .none { padding: 16px; color: var(--muted); font-size: 13px; }
+
+  .none-box { padding: 32px 16px; text-align: center; color: var(--muted); font-size: 14px; background: #fff; border: 1px solid var(--line); margin-top: 10px; }
+  .note { font-size: 12px; color: var(--muted); margin-top: 28px; line-height: 1.8; }
+  footer { border-top: 1px solid var(--line); padding: 24px 20px; font-size: 12px; color: var(--muted); text-align: center; }
+  .ng { max-width: 480px; margin: 80px auto; padding: 0 20px; text-align: center; }
+  .ng h1 { font-family: 'Noto Serif JP', serif; font-size: 20px; }
+  .ng p { color: var(--muted); font-size: 14px; }
+  .loading { text-align: center; color: var(--muted); padding: 120px 20px; font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="loading" id="loading">読み込んでいます…</div>
+  <div class="ng" id="ng" style="display:none">
+    <h1>このページは開けません</h1>
+    <p>URLが正しくないか、新しいURLに変わっています。<br>お手数ですが、合同会社TRUSTの担当者までご連絡ください。</p>
+  </div>
+<div id="main" style="display:none">
+<header><div class="in">
+  <div class="logo">TRUST PARTNER</div>
+  <h1 id="pname"></h1>
+  <p id="updated"></p>
+</div></header>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="k">ご紹介いただいた方</div><div class="v" id="sCustomers">0<small>人</small></div></div>
+    <div class="stat"><div class="k">開通したサービス</div><div class="v" id="sOpened">0<small>件</small></div></div>
+    <div class="stat"><div class="k">今月の紹介料</div><div class="v" id="sMonth">0<small>円</small></div></div>
+    <div class="stat"><div class="k">これまでの紹介料</div><div class="v" id="sTotal">0<small>円</small></div></div>
+  </div>
+
+  <a class="cta" id="cta" href="#" target="_blank" rel="noopener">入居者さんを紹介する</a>
+  <p class="cta-note">入居者さんと一緒に入力するか、このボタンのURLを入居者さんに送ってください。</p>
+
+  <h2><span><span class="eyebrow">01</span>ご紹介いただいた方</span><small id="count"></small></h2>
+  <div class="tabs" id="tabs"></div>
+  <input class="search" id="q" type="search" placeholder="お名前で探す">
+  <div id="list"></div>
+
+  <h2><span><span class="eyebrow">02</span>紹介料の明細</span></h2>
+  <div class="fees">
+    <div class="top"><select id="month" aria-label="対象月"></select><div class="total" id="mTotal">0円</div></div>
+    <div id="fees"></div>
+  </div>
+
+  <p class="note">
+    ・紹介料は、サービスが開通した月に計上されます。お支払いは合同会社TRUSTからのご案内のとおりです。<br>
+    ・お客様の個人情報保護のため、電話番号は下4桁のみ表示しています。<br>
+    ・このページのURLは、貴社専用です。外部の方には共有しないでください。
+  </p>
+</div>
+<footer>合同会社TRUST　080-4044-4133</footer>
+</div>
+
+<script>
+  var API_URL = 'https://script.google.com/macros/s/AKfycby-yvcp0g1OrmpnEuxCT9uDul2juDYuXAJH8iVs_1gRhLIpkn4NZYxoU0hMWB08R43EaA/exec';
+  var token = (new URLSearchParams(location.search).get('t') || '').slice(0, 64);
+  function fail() { document.getElementById('loading').style.display = 'none'; document.getElementById('ng').style.display = 'block'; }
+  if (!token) fail();
+  else fetch(API_URL + '?api=portal&t=' + encodeURIComponent(token))
+    .then(function (r) { return r.json(); })
+    .then(function (j) {
+      if (!j.ok) return fail();
+      document.getElementById('pname').textContent = j.partnerName + ' 様';
+      document.getElementById('cta').href = j.formUrl;
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('main').style.display = 'block';
+      start(j.data);
+    })
+    .catch(fail);
+
+  function start(DATA) {
+  var yen = function (n) { return (n || 0).toLocaleString('ja-JP'); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var pillClass = { '開通済み': 'done', 'お申込み済み': 'applied', 'ご案内中': 'wait', 'キャンセル': 'off', '解約': 'off' };
+
+  function custStatus(c) {
+    if (!c.deals.length) return 'ご連絡中';
+    var s = c.deals.map(function (d) { return d.status; });
+    if (s.indexOf('開通済み') >= 0) return '開通済み';
+    if (s.indexOf('お申込み済み') >= 0) return 'お申込み済み';
+    if (s.indexOf('ご案内中') >= 0) return 'ご案内中';
+    return 'キャンセル・解約';
+  }
+
+  // ---- 集計 ----
+  var opened = 0, total = 0, month = 0, months = {};
+  DATA.customers.forEach(function (c) {
+    c.st = custStatus(c);
+    c.deals.forEach(function (d) {
+      if (d.opened && d.status !== 'キャンセル') opened++;
+      total += d.fee;
+      if (d.feeMonth) months[d.feeMonth] = true;
+      if (d.feeMonth === DATA.thisMonth) month += d.fee;
+    });
+  });
+  document.getElementById('updated').textContent = DATA.today + ' 時点の情報です';
+  document.getElementById('sCustomers').innerHTML = DATA.customers.length + '<small>人</small>';
+  document.getElementById('sOpened').innerHTML = opened + '<small>件</small>';
+  document.getElementById('sMonth').innerHTML = yen(month) + '<small>円</small>';
+  document.getElementById('sTotal').innerHTML = yen(total) + '<small>円</small>';
+
+  // ---- 一覧 ----
+  var FILTERS = ['すべて', 'ご連絡中', 'ご案内中', 'お申込み済み', '開通済み', 'キャンセル・解約'];
+  var current = 'すべて';
+  var tabs = document.getElementById('tabs');
+  FILTERS.forEach(function (f) {
+    var n = f === 'すべて' ? DATA.customers.length : DATA.customers.filter(function (c) { return c.st === f; }).length;
+    var b = document.createElement('button');
+    b.className = 'tab' + (f === current ? ' on' : '');
+    b.textContent = f + ' ' + n;
+    b.onclick = function () { current = f; Array.prototype.forEach.call(tabs.children, function (x) { x.className = 'tab'; }); b.className = 'tab on'; renderList(); };
+    tabs.appendChild(b);
+  });
+  document.getElementById('q').addEventListener('input', renderList);
+
+  function renderList() {
+    var q = document.getElementById('q').value.trim();
+    var rows = DATA.customers.filter(function (c) {
+      return (current === 'すべて' || c.st === current) && (!q || c.name.indexOf(q) >= 0);
+    });
+    document.getElementById('count').textContent = rows.length + '人';
+    if (!rows.length) {
+      document.getElementById('list').innerHTML = '<div class="none-box">' + (DATA.customers.length ? '該当する方はいません' : 'まだご紹介はありません。<br>事務所のQRポスターや、上のボタンからご紹介ください。') + '</div>';
+      return;
+    }
+    document.getElementById('list').innerHTML = rows.map(function (c) {
+      var deals = c.deals.length ? c.deals.map(function (d) {
+        var dates = [d.applied ? '申込 ' + d.applied : '', d.opened ? '開通 ' + d.opened : '', d.canceled ? '解約 ' + d.canceled : ''].filter(String).join('　');
+        return '<div class="deal"><div><div class="svc">' + esc(d.service) + '</div>' + (dates ? '<div class="dates">' + esc(dates) + '</div>' : '') + '</div>' +
+          '<div class="right"><span class="pill ' + (pillClass[d.status] || 'wait') + '">' + esc(d.status) + '</span>' +
+          (d.fee ? '<div class="fee">紹介料 ' + yen(d.fee) + '円</div>' : '') + '</div></div>';
+      }).join('') : '<div class="empty-deal">担当者からご連絡しています</div>';
+      var meta = ['受付 ' + c.registered, c.moveDate ? '引越予定 ' + c.moveDate : '', c.phone ? '電話 ' + c.phone : ''].filter(String).join('　');
+      return '<div class="card"><div class="head"><div><div class="name">' + esc(c.name) + ' 様</div><div class="meta">' + esc(meta) + '</div></div>' +
+        '<span class="pill ' + (pillClass[c.st] || 'wait') + '">' + esc(c.st) + '</span></div><div class="deals">' + deals + '</div></div>';
+    }).join('');
+  }
+
+  // ---- 紹介料の明細 ----
+  var sel = document.getElementById('month');
+  var list = Object.keys(months);
+  if (list.indexOf(DATA.thisMonth) < 0) list.push(DATA.thisMonth);
+  list.sort().reverse().forEach(function (m) {
+    var o = document.createElement('option'); o.value = m; o.textContent = m.replace('/', '年') + '月'; sel.appendChild(o);
+  });
+  sel.addEventListener('change', renderFees);
+
+  function renderFees() {
+    var m = sel.value, sum = 0, rows = [];
+    DATA.customers.forEach(function (c) {
+      c.deals.forEach(function (d) {
+        if (d.feeMonth === m && d.fee) { sum += d.fee; rows.push('<tr><td>' + esc(c.name) + ' 様</td><td>' + esc(d.service) + '</td><td class="num">' + yen(d.fee) + '円</td></tr>'); }
+      });
+    });
+    document.getElementById('mTotal').textContent = yen(sum) + '円';
+    document.getElementById('fees').innerHTML = rows.length ? '<table>' + rows.join('') + '</table>' : '<div class="none">この月の紹介料はまだありません</div>';
+  }
+
+  renderList();
+  renderFees();
+  }
+</script>
+</body>
+</html>

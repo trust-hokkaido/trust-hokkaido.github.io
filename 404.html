@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>合同会社TRUST</title>
+<script>
+  // 旧URL（/partner/?t=...）を partner.html に案内する
+  var p = location.pathname.replace(/\/+$/, '');
+  if (/\/partner$/.test(p)) location.replace('/partner.html' + location.search);
+  else location.replace('/' + location.search);
+</script>
+</head>
+<body></body>
+</html>
