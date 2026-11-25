@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<title>事務所・店舗のライフライン相談｜合同会社TRUST</title>
+<meta name="description" content="事務所・店舗のネット・電気・お水のご相談は合同会社TRUSTへ。">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #141414; --light: #FAFAF7; --paper: #F0EDE6; --muted: #5F5D57;
+    --line: #D8D5CD; --gold: #8A6A3B; --error: #B3261E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--light); color: var(--ink); }
+  body { font-family: 'Noto Sans JP', -apple-system, 'Hiragino Sans', sans-serif; font-size: 16px; line-height: 1.7; -webkit-text-size-adjust: 100%; }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 0 20px 64px; }
+
+  header { background: var(--ink); color: var(--light); padding: 18px 20px; }
+  header .in { max-width: 560px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .logo { font-family: 'Noto Serif JP', serif; font-weight: 700; letter-spacing: .18em; font-size: 15px; }
+  .via { font-size: 12px; color: #C9C6BE; text-align: right; }
+
+  .hero { padding: 40px 0 28px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-size: 12px; letter-spacing: .2em; color: var(--gold); font-weight: 500; }
+  h1 { font-family: 'Noto Serif JP', serif; font-size: 26px; line-height: 1.5; margin: 12px 0 14px; letter-spacing: .04em; }
+  .lead { color: var(--muted); font-size: 15px; margin: 0; }
+  .badges { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+  .badge { font-size: 12px; border: 1px solid var(--ink); padding: 3px 10px; }
+
+  form { margin-top: 8px; }
+  .sec { padding: 28px 0 4px; }
+  .sec h2 { font-size: 15px; margin: 0 0 14px; letter-spacing: .06em; display: flex; align-items: center; gap: 10px; }
+  .sec h2 .n { font-family: 'Noto Serif JP', serif; color: var(--gold); font-size: 14px; }
+
+  .svc { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .svc label { position: relative; display: block; border: 1px solid var(--line); background: #fff; padding: 14px 12px 14px 40px; font-size: 14px; font-weight: 500; cursor: pointer; min-height: 52px; }
+  .svc input { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; accent-color: var(--ink); margin: 0; }
+  .svc label:has(input:checked) { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .svc small { display: block; font-weight: 400; color: var(--muted); font-size: 11px; line-height: 1.4; }
+  .svc .wide { grid-column: 1 / -1; }
+
+  .field { margin-bottom: 18px; }
+  .field label { display: block; font-size: 13px; font-weight: 500; margin-bottom: 6px; }
+  .req { font-size: 11px; color: #fff; background: var(--ink); padding: 1px 6px; margin-left: 6px; vertical-align: 1px; }
+  .opt { font-size: 11px; color: var(--muted); margin-left: 6px; }
+  input[type=text], input[type=tel], input[type=email], input[type=date], select, textarea {
+    width: 100%; font: inherit; font-size: 16px; color: var(--ink); background: #fff;
+    border: 1px solid var(--line); border-radius: 0; padding: 12px 14px; -webkit-appearance: none; appearance: none;
+  }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); }
+  textarea { min-height: 96px; resize: vertical; }
+  .row2 { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; }
+
+  .agree { background: var(--paper); padding: 16px; font-size: 13px; color: var(--muted); margin-top: 8px; }
+  .agree label { display: flex; gap: 10px; align-items: flex-start; color: var(--ink); font-weight: 500; margin-top: 10px; cursor: pointer; }
+  .agree input { width: 18px; height: 18px; margin-top: 3px; accent-color: var(--ink); flex: none; }
+
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .err { color: var(--error); font-size: 13px; min-height: 20px; margin: 16px 0 8px; }
+  button { width: 100%; font: inherit; font-size: 16px; font-weight: 700; letter-spacing: .12em; color: var(--light); background: var(--ink); border: 0; padding: 18px; cursor: pointer; }
+  button:disabled { opacity: .55; cursor: default; }
+  .note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 14px; }
+
+  .done { display: none; padding: 64px 0; text-align: center; }
+  .done .mark { width: 56px; height: 56px; border: 1px solid var(--ink); border-radius: 50%; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+  .done h1 { font-size: 24px; }
+  footer { border-top: 1px solid var(--line); padding: 24px 20px; font-size: 12px; color: var(--muted); text-align: center; }
+</style>
+</head>
+<body>
+<header><div class="in">
+  <div class="logo">TRUST</div>
+  <div class="via" id="via"></div>
+</div></header>
+
+<div class="wrap">
+  <div id="formArea">
+    <div class="hero">
+      <div class="eyebrow">BUSINESS SUPPORT</div>
+      <h1>事務所・店舗のネット・電気、<br>まとめてご相談ください。</h1>
+      <p class="lead">開業・移転にともなうライフラインの準備を、まとめてお手伝いします。ご入力は1分ほど、ご相談は無料です。</p>
+      <div class="badges"><span class="badge">相談無料</span><span class="badge">しつこい勧誘なし</span><span class="badge">手続きもおまかせ</span></div>
+    </div>
+
+    <form id="f" novalidate>
+      <div class="sec">
+        <h2><span class="n">01</span>ご希望のサービス<span class="opt">複数選べます</span></h2>
+        <div class="svc">
+          <label><input type="checkbox" name="services" value="光回線">法人向け光回線<small>事務所・店舗のネット</small></label>
+          <label><input type="checkbox" name="services" value="ポケットWiFi">ポケットWiFi<small>開業前・外出先でも</small></label>
+          <label><input type="checkbox" name="services" value="ウォーターサーバー">ウォーターサーバー<small>オフィスのお水</small></label>
+          <label><input type="checkbox" name="services" value="電気">電気<small>使用開始・コスト見直し</small></label>
+          <label><input type="checkbox" name="services" value="ガス">ガス<small>開栓のご案内</small></label>
+          <label><input type="checkbox" name="services" value="相談したい">まだ決めていない<small>まとめて相談したい</small></label>
+        </div>
+      </div>
+
+      <div class="sec">
+        <h2><span class="n">02</span>会社の情報</h2>
+        <div class="field"><label for="company">会社名・店舗名<span class="req">必須</span></label><input type="text" id="company" name="company" autocomplete="organization" placeholder="例）株式会社〇〇" maxlength="80"></div>
+        <div class="field"><label for="contact">ご担当者様のお名前<span class="req">必須</span></label><input type="text" id="contact" name="contact" autocomplete="name" placeholder="例）山田 太郎" maxlength="50"></div>
+        <div class="row2" style="grid-template-columns:1fr 1fr">
+          <div class="field"><label for="industry">業種<span class="opt">任意</span></label>
+            <select id="industry" name="industry"><option value="">選択してください</option><option>事務所・オフィス</option><option>飲食店</option><option>美容・サロン</option><option>小売・物販</option><option>医療・介護</option><option>その他</option></select></div>
+          <div class="field"><label for="staff">従業員数<span class="opt">任意</span></label>
+            <select id="staff" name="staff"><option value="">選択してください</option><option>1〜4名</option><option>5〜19名</option><option>20〜49名</option><option>50名以上</option></select></div>
+        </div>
+        <div class="field"><label for="phone">電話番号<span class="req">必須</span></label><input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="例）090-1234-5678" maxlength="20"></div>
+        <div class="field"><label for="email">メールアドレス<span class="opt">任意</span></label><input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="例）name@example.com" maxlength="100"></div>
+        <div class="field"><label for="contactTime">ご連絡の希望時間帯<span class="opt">任意</span></label>
+          <select id="contactTime" name="contactTime"><option value="">いつでも</option><option>午前（9〜12時）</option><option>午後（12〜17時）</option><option>夕方以降（17〜20時）</option><option>メール・SMSを希望</option></select></div>
+      </div>
+
+      <div class="sec">
+        <h2><span class="n">03</span>入居先の情報<span class="opt">分かる範囲で</span></h2>
+        <div class="field"><label for="propertyType">物件の種類</label>
+          <select id="propertyType" name="propertyType"><option value="">選択してください</option><option>事務所</option><option>店舗</option><option>倉庫・工場</option><option>その他</option></select></div>
+        <div class="field"><label for="moveDate">入居・開業予定日</label><input type="date" id="moveDate" name="moveDate"></div>
+        <div class="row2">
+          <div class="field"><label for="zip">郵便番号</label><input type="text" id="zip" name="zip" inputmode="numeric" autocomplete="postal-code" placeholder="060-0000" maxlength="10"></div>
+          <div class="field"><label for="address">住所</label><input type="text" id="address" name="address" autocomplete="street-address" placeholder="札幌市〇〇区…" maxlength="150"></div>
+        </div>
+        <div class="field"><label for="note">ご要望・ご質問<span class="opt">任意</span></label><textarea id="note" name="note" maxlength="500" placeholder="例）複合機やPOSレジを使うので安定した回線がいい、など"></textarea></div>
+      </div>
+
+      <div class="hp" aria-hidden="true"><label>website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="agree">
+        ご入力いただいた情報は、事務所・店舗向けライフラインサービスのご案内とお手続きのために合同会社TRUSTが利用します。また、ご紹介元の不動産会社様に、ご案内の進み具合をお伝えすることがあります。
+        <label><input type="checkbox" id="agree">上記の個人情報の取り扱いに同意する</label>
+      </div>
+
+      <p class="err" id="err" role="alert"></p>
+      <button type="submit" id="btn">この内容で相談する</button>
+      <p class="note">送信後、担当者よりご連絡いたします。</p>
+    </form>
+  </div>
+
+  <div class="done" id="done">
+    <div class="mark">✓</div>
+    <div class="eyebrow">THANK YOU</div>
+    <h1>ご相談を受け付けました。</h1>
+    <p class="lead">担当者より、ご入力の電話番号へご連絡いたします。<br>開業・移転の準備、どうぞおまかせください。</p>
+  </div>
+</div>
+
+<footer>合同会社TRUST</footer>
+
+<script>
+  // スプシとつながっている窓口（Apps Script）のURL
+  var API_URL = 'https://script.google.com/macros/s/AKfycby-yvcp0g1OrmpnEuxCT9uDul2juDYuXAJH8iVs_1gRhLIpkn4NZYxoU0hMWB08R43EaA/exec';
+
+  var params = new URLSearchParams(location.search);
+  var PARTNER_ID = (params.get('p') || '').slice(0, 20);
+  var f = document.getElementById('f');
+  var btn = document.getElementById('btn');
+  var err = document.getElementById('err');
+
+  // 紹介元の不動産屋さんの名前を表示する
+  if (PARTNER_ID) {
+    fetch(API_URL + '?api=partner&p=' + encodeURIComponent(PARTNER_ID))
+      .then(function (r) { return r.json(); })
+      .then(function (j) { if (j.ok && j.partnerName) document.getElementById('via').textContent = j.partnerName + ' 様からのご案内'; })
+      .catch(function () {});
+  }
+
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    err.textContent = '';
+    var v = function (n) { return (f.elements[n].value || '').trim(); };
+    var services = Array.prototype.slice.call(f.querySelectorAll('input[name=services]:checked')).map(function (i) { return i.value; });
+    var data = {
+      type: 'biz', partnerId: PARTNER_ID, services: services,
+      company: v('company'), contact: v('contact'), industry: v('industry'), staff: v('staff'), propertyType: v('propertyType'), phone: v('phone'), email: v('email'),
+      contactTime: v('contactTime'), moveDate: v('moveDate'), zip: v('zip'), address: v('address'),
+      note: v('note'), website: v('website'), agree: document.getElementById('agree').checked
+    };
+    if (!services.length) return showErr('ご希望のサービスを1つ以上お選びください。');
+    if (!data.company) return showErr('会社名・店舗名を入力してください。', 'company');
+    if (!data.contact) return showErr('ご担当者様のお名前を入力してください。', 'contact');
+    if (data.phone.replace(/[^0-9０-９]/g, '').length < 10) return showErr('電話番号をご確認ください。', 'phone');
+    if (!data.agree) return showErr('個人情報の取り扱いへの同意をお願いします。');
+
+    btn.disabled = true; btn.textContent = '送信しています…';
+    fetch(API_URL, { method: 'POST', body: JSON.stringify(data) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j.ok) throw new Error(j.error || '');
+        document.getElementById('formArea').style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+        window.scrollTo(0, 0);
+      })
+      .catch(function (e2) {
+        btn.disabled = false; btn.textContent = 'この内容で相談する';
+        var m = e2 && e2.message;
+        showErr(m && !/fetch|network|JSON/i.test(m) ? m : '送信できませんでした。電波の良いところで、もう一度お試しください。');
+      });
+  });
+
+  function showErr(msg, focusId) {
+    err.textContent = msg;
+    if (focusId) document.getElementById(focusId).focus();
+    else err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+</script>
+</body>
+</html>
